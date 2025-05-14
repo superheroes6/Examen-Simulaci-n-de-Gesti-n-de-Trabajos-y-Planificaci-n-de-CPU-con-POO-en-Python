@@ -45,3 +45,49 @@ class Scheduler(ABC):
 
         print("Gantt Chart:", gantt_chart)
         return gantt_chart
+
+class FCFSScheduler(Scheduler):
+    def planificar(self, procesos: List) -> List[GanttEntry]:
+        if not procesos:
+            print("No processes to schedule.")
+            return []
+
+        gantt_chart = []
+        current_time = 0
+
+        for proceso in procesos:
+            start_time = current_time
+            current_time += proceso.tiempo_ejecucion
+            gantt_chart.append((proceso.id_proceso, start_time, current_time))
+
+        print("Gantt Chart (FCFS):", gantt_chart)
+        return gantt_chart
+
+class RoundRobinScheduler(Scheduler):
+    def __init__(self, repositorio, quantum: int):
+        super().__init__(repositorio)
+        self.quantum = quantum
+
+    def planificar(self, procesos: List) -> List[GanttEntry]:
+        if not procesos:
+            print("No processes to schedule.")
+            return []
+
+        gantt_chart = []
+        queue = procesos[:]
+        current_time = 0
+
+        while queue:
+            proceso = queue.pop(0)
+            start_time = current_time
+            if proceso.tiempo_ejecucion > self.quantum:
+                current_time += self.quantum
+                proceso.tiempo_ejecucion -= self.quantum
+                queue.append(proceso)
+            else:
+                current_time += proceso.tiempo_ejecucion
+                proceso.tiempo_ejecucion = 0
+            gantt_chart.append((proceso.id_proceso, start_time, current_time))
+
+        print("Gantt Chart (Round-Robin):", gantt_chart)
+        return gantt_chart

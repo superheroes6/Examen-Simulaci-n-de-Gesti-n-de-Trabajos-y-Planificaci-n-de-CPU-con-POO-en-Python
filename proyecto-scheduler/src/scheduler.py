@@ -1,6 +1,16 @@
-class Scheduler:
+from abc import ABC, abstractmethod
+from typing import List, Tuple
+
+GanttEntry = Tuple[str, int, int]  # Define GanttEntry as a tuple (pid, tiempo_inicio, tiempo_fin)
+
+class Scheduler(ABC):
     def __init__(self, repositorio):
         self.repositorio = repositorio
+
+    @abstractmethod
+    def planificar(self, procesos: List) -> List[GanttEntry]:
+        """Abstract method to plan the execution of processes."""
+        pass
 
     def ejecutar_fcfs(self):
         if not self.repositorio.procesos:

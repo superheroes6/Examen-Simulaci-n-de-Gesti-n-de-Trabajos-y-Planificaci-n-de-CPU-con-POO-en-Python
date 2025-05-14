@@ -33,3 +33,8 @@ if __name__ == "__main__":
                 print(f"Average Response Time: {promedio_respuesta}")
                 print(f"Average Wait Time: {promedio_espera}")
                 print(f"Average Turnaround Time: {promedio_retorno}")
+        elif choice == "4":
+            print("Exiting...")
+            break
+        else:
+            print("Invalid choice. Please try again.")

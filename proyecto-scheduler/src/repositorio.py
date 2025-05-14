@@ -1,4 +1,5 @@
 import json
+import csv
 
 class RepositorioProcesos:
     def __init__(self):
@@ -35,13 +36,39 @@ class RepositorioProcesos:
         print(f"Process with ID {pid} not found.")
         return None
 
-    def guardar_en_disco(self, archivo="procesos.json"):
+    def guardar_en_json(self, archivo="procesos.json"):
+        """Save processes to a JSON file."""
         with open(archivo, "w") as f:
             json.dump([p.__dict__ for p in self.procesos], f)
+        print(f"Processes saved to {archivo} in JSON format.")
 
-    def cargar_desde_disco(self, archivo="procesos.json"):
+    def cargar_desde_json(self, archivo="procesos.json"):
+        """Load processes from a JSON file, replacing existing ones."""
         try:
             with open(archivo, "r") as f:
                 self.procesos = [Proceso(**p) for p in json.load(f)]
+            print(f"Processes loaded from {archivo}.")
         except FileNotFoundError:
-            print("Archivo no encontrado. Iniciando con un repositorio vacío.")
+            print(f"File {archivo} not found. No processes loaded.")
+
+    def guardar_en_csv(self, archivo="procesos.csv"):
+        """Save processes to a CSV file."""
+        with open(archivo, "w", newline="") as f:
+            writer = csv.writer(f, delimiter=";")
+            writer.writerow(["id_proceso", "tiempo_ejecucion", "prioridad"])
+            for proceso in self.procesos:
+                writer.writerow([proceso.id_proceso, proceso.tiempo_ejecucion, proceso.prioridad])
+        print(f"Processes saved to {archivo} in CSV format.")
+
+    def cargar_desde_csv(self, archivo="procesos.csv"):
+        """Load processes from a CSV file, replacing existing ones."""
+        try:
+            with open(archivo, "r") as f:
+                reader = csv.DictReader(f, delimiter=";")
+                self.procesos = [
+                    Proceso(row["id_proceso"], int(row["tiempo_ejecucion"]), int(row["prioridad"]))
+                    for row in reader
+                ]
+            print(f"Processes loaded from {archivo}.")
+        except FileNotFoundError:
+            print(f"File {archivo} not found. No processes loaded.")

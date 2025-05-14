@@ -38,10 +38,12 @@ if __name__ == "__main__":
                 print("Gantt Chart (Round-Robin):")
                 for entry in gantt_chart:
                     print(f"Process {entry[0]}: Start={entry[1]}, End={entry[2]}")
-                promedio_respuesta, promedio_espera, promedio_retorno = Metrics.calcular_tiempos(gantt_chart)
+                promedio_respuesta, promedio_retorno, promedio_espera = Metrics.calcular_tiempos(
+                    gantt_chart, repositorio.procesos
+                )
                 print(f"Average Response Time: {promedio_respuesta}")
-                print(f"Average Wait Time: {promedio_espera}")
                 print(f"Average Turnaround Time: {promedio_retorno}")
+                print(f"Average Wait Time: {promedio_espera}")
         elif choice == "4":
             print("Exiting...")
             break

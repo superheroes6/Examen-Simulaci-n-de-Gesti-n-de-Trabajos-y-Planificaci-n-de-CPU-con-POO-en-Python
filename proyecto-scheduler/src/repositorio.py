@@ -17,3 +17,11 @@ class Repositorio:
                 self.procesos = [Proceso(**p) for p in json.load(f)]
         except FileNotFoundError:
             print("Archivo no encontrado. Iniciando con un repositorio vacío.")
+
+    def listar_procesos(self):
+        if not self.procesos:
+            print("No processes in the repository.")
+        else:
+            print("Processes in the repository:")
+            for proceso in self.procesos:
+                print(proceso)

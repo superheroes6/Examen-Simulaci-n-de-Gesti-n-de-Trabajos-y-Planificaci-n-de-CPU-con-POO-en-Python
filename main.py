@@ -1,13 +1,12 @@
 from proyecto_scheduler.src.fcfs_scheduler import FCFSScheduler
 from proyecto_scheduler.src.round_robin_scheduler import RoundRobinScheduler
-from proyecto_scheduler.src.repositorio import Repositorio
+from proyecto_scheduler.src.repositorio import RepositorioProcesos
 from proyecto_scheduler.src.proceso import Proceso
 from proyecto_scheduler.src.metrics import Metrics
 
 if __name__ == "__main__":
     print("Welcome to the CPU Scheduler Simulation!")
-    repositorio = Repositorio()
-    scheduler = Scheduler(repositorio)
+    repositorio = RepositorioProcesos()
 
     while True:
         print("\nMenu:")

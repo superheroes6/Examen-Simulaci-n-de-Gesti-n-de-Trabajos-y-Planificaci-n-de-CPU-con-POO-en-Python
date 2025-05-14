@@ -1,4 +1,4 @@
-from proyecto_scheduler.src.proceso import Proceso
+from src.proceso import Proceso
 
 def test_proceso_creation():
     proceso = Proceso("P1", 10, 1, tiempo_llegada=0)

@@ -1,5 +1,6 @@
-from proyecto_scheduler.src.proceso import Proceso
-from proyecto_scheduler.src.scheduler import FCFSScheduler, RoundRobinScheduler
+from src.proceso import Proceso
+from src.fcfs_scheduler import FCFSScheduler
+from src.round_robin_scheduler import RoundRobinScheduler
 
 def test_scheduler_fcfs():
     procesos = [

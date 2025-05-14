@@ -1,5 +1,5 @@
-from proyecto_scheduler.src.proceso import Proceso
-from proyecto_scheduler.src.repositorio import RepositorioProcesos
+from src.proceso import Proceso
+from src.repositorio import RepositorioProcesos
 
 def test_repositorio_json_persistence(tmp_path):
     repo = RepositorioProcesos()

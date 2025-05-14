@@ -1,5 +1,6 @@
 import json
 import csv
+from src.proceso import Proceso  # Ensure Proceso is imported correctly
 
 class RepositorioProcesos:
     def __init__(self):
@@ -66,7 +67,12 @@ class RepositorioProcesos:
             with open(archivo, "r") as f:
                 reader = csv.DictReader(f, delimiter=";")
                 self.procesos = [
-                    Proceso(row["id_proceso"], int(row["tiempo_ejecucion"]), int(row["prioridad"]))
+                    Proceso(
+                        row["id_proceso"],
+                        int(row["tiempo_ejecucion"]),
+                        int(row["prioridad"]),
+                        int(row.get("tiempo_llegada", 0)),
+                    )
                     for row in reader
                 ]
             print(f"Processes loaded from {archivo}.")

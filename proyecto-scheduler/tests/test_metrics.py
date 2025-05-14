@@ -1,5 +1,5 @@
-from proyecto_scheduler.src.metrics import Metrics
-from proyecto_scheduler.src.proceso import Proceso
+from src.metrics import Metrics
+from src.proceso import Proceso
 
 def test_metrics_calculation():
     gantt_chart = [("P1", 0, 5), ("P2", 5, 8)]

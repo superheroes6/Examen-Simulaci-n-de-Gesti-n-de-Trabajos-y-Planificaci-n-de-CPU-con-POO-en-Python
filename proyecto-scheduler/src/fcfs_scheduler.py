@@ -1,4 +1,4 @@
-from proyecto_scheduler.src.scheduler import Scheduler, GanttEntry
+from src.scheduler import Scheduler, GanttEntry
 from typing import List
 
 class FCFSScheduler(Scheduler):

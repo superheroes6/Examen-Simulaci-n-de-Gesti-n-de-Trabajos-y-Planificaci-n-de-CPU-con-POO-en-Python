@@ -24,11 +24,20 @@ if __name__ == "__main__":
             repositorio.agregar_proceso(proceso)
             print(f"Process {id_proceso} added.")
         elif choice == "2":
-            scheduler.ejecutar_fcfs()
+            scheduler = FCFSScheduler(repositorio)
+            gantt_chart = scheduler.planificar(repositorio.procesos)
+            if gantt_chart:
+                print("Gantt Chart (FCFS):")
+                for entry in gantt_chart:
+                    print(f"Process {entry[0]}: Start={entry[1]}, End={entry[2]}")
         elif choice == "3":
             quantum = int(input("Enter quantum: "))
-            gantt_chart = scheduler.ejecutar_round_robin(quantum)
+            scheduler = RoundRobinScheduler(repositorio, quantum)
+            gantt_chart = scheduler.planificar(repositorio.procesos)
             if gantt_chart:
+                print("Gantt Chart (Round-Robin):")
+                for entry in gantt_chart:
+                    print(f"Process {entry[0]}: Start={entry[1]}, End={entry[2]}")
                 promedio_respuesta, promedio_espera, promedio_retorno = Metrics.calcular_tiempos(gantt_chart)
                 print(f"Average Response Time: {promedio_respuesta}")
                 print(f"Average Wait Time: {promedio_espera}")

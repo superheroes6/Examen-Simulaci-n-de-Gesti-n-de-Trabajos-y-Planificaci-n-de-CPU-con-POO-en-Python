@@ -60,7 +60,9 @@ class FCFSScheduler(Scheduler):
             current_time += proceso.tiempo_ejecucion
             gantt_chart.append((proceso.id_proceso, start_time, current_time))
 
-        print("Gantt Chart (FCFS):", gantt_chart)
+        print("Gantt Chart (FCFS):")
+        for entry in gantt_chart:
+            print(f"Process {entry[0]}: Start={entry[1]}, End={entry[2]}")
         return gantt_chart
 
 class RoundRobinScheduler(Scheduler):
@@ -89,5 +91,7 @@ class RoundRobinScheduler(Scheduler):
                 proceso.tiempo_ejecucion = 0
             gantt_chart.append((proceso.id_proceso, start_time, current_time))
 
-        print("Gantt Chart (Round-Robin):", gantt_chart)
+        print("Gantt Chart (Round-Robin):")
+        for entry in gantt_chart:
+            print(f"Process {entry[0]}: Start={entry[1]}, End={entry[2]}")
         return gantt_chart

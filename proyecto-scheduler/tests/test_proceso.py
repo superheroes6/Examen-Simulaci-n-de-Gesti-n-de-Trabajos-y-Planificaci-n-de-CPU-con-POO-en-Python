@@ -1,3 +1,9 @@
+from proyecto_scheduler.src.proceso import Proceso
+
 def test_proceso_creation():
-    # Placeholder for testing Proceso creation
-    print("Test for Proceso creation not implemented yet.")
+    proceso = Proceso("P1", 10, 1, tiempo_llegada=0)
+    assert proceso.id_proceso == "P1"
+    assert proceso.tiempo_ejecucion == 10
+    assert proceso.prioridad == 1
+    assert proceso.tiempo_llegada == 0
+    print("Test for Proceso creation passed.")

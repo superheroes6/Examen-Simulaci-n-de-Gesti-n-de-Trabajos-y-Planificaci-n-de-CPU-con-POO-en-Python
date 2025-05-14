@@ -1,4 +1,5 @@
-from proyecto_scheduler.src.scheduler import Scheduler
+from proyecto_scheduler.src.fcfs_scheduler import FCFSScheduler
+from proyecto_scheduler.src.round_robin_scheduler import RoundRobinScheduler
 from proyecto_scheduler.src.repositorio import Repositorio
 from proyecto_scheduler.src.proceso import Proceso
 from proyecto_scheduler.src.metrics import Metrics
